@@ -1,7 +1,5 @@
 package com.exam3.transfer3.configs;
 
-import java.util.logging.Logger;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +8,7 @@ import org.springframework.data.redis.connection.jedis.JedisClientConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+
 
 @Configuration
 public class AppConfig {
@@ -42,6 +41,7 @@ public class AppConfig {
 		final JedisClientConfiguration jedisClient = JedisClientConfiguration.builder().build();
 		final JedisConnectionFactory jedisFac = new JedisConnectionFactory(config, jedisClient);
 		jedisFac.afterPropertiesSet();
+
 
 		final RedisTemplate<String, String> template = new RedisTemplate<>();
 		template.setConnectionFactory(jedisFac);
