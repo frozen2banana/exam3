@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Landing Page</title>
+	</head>
+	<body>
+		<h1>Funds Transfer</h1>
+		<form method="post" action="/transfer">
+			<label for="fromAccount">From account:</label>
+			<select id="fromAccount" name="fromAccount">
+				<option
+					th:each="account : ${accounts}"
+					th:value="${account.account_id}"
+					th:text="${account.name + ' (' + account.account_id + ')'}"></option>
+			</select>
+			<br /><br />
+			<label for="toAccount">To account:</label>
+			<select id="toAccount" name="toAccount">
+				<option
+					th:each="account : ${accounts}"
+					th:value="${account.account_id}"
+					th:text="${account.name + ' (' + account.account_id + ')'}"></option>
+			</select>
+			<br /><br />
+			<label for="amount">Amount:</label>
+			<input type="number" step="0.01" id="amount" name="amount" />
+			<br /><br />
+			<label for="comments">Comments:</label>
+			<textarea id="comments" name="comments"></textarea>
+			<br /><br />
+			<input type="submit" value="Transfer" />
+		</form>
+		<br /><br />
+		<div th:if="${error}">
+			<p>Error message: <span th:text="${error}"></span></p>
+		</div>
+	</body>
+</html>
